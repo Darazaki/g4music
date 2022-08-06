@@ -59,6 +59,9 @@ namespace Music {
             Object (application: app);
             this.icon_name = app.application_id;
 
+            // Start maximized by default
+            this.maximize ();
+
             this.close_request.connect (on_close_request);
 
             var settings = app.settings;
