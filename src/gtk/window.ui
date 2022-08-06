@@ -16,8 +16,7 @@
                 <property name="child">
                   <object class="GtkBox">
                     <property name="orientation">vertical</property>
-                    <property name="hexpand">false</property>
-                    <property name="width_request">320</property>
+                    <property name="hexpand">true</property>
                     <child>
                       <object class="GtkHeaderBar">
                         <binding name="show-title-buttons">
@@ -107,7 +106,8 @@
                 <property name="navigatable">true</property>
                 <property name="child">
                   <object class="GtkBox" id="content_box">
-                    <property name="hexpand">true</property>
+                    <property name="hexpand">false</property>
+                    <property name="width_request">420</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkHeaderBar" id="header_bar">
