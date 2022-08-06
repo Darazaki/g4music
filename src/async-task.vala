@@ -7,9 +7,9 @@ namespace Music {
         private SourceFunc _callback;
         private V? _result = null;
 
-        public Worker (TaskFunc<V> task, SourceFunc callback) {
-            _task = task;
-            _callback = callback;
+        public Worker (owned TaskFunc<V> task, owned SourceFunc callback) {
+            _task = (owned) task;
+            _callback = (owned) callback;
         }
 
         public V? result {
@@ -49,8 +49,8 @@ namespace Music {
         }
     }
 
-    public static async V run_async<V> (TaskFunc<V> task, bool front = false, bool in_single_pool = false) {
-        var worker = new Worker<V> (task, run_async<V>.callback);
+    public static async V run_async<V> (owned TaskFunc<V> task, bool front = false, bool in_single_pool = false) {
+        var worker = new Worker<V> ((owned) task, run_async<V>.callback);
         try {
             unowned var pool = in_single_pool ? Worker.get_single_thread_pool () : Worker.get_multi_thread_pool ();
             pool.add (worker);
