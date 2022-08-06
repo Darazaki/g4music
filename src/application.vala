@@ -23,7 +23,7 @@ namespace Music {
     internal Settings? new_application_settings () {
         var source = SettingsSchemaSource.get_default ()?.lookup (Config.APP_ID, false);
         if (source != null)
-            return new Settings.full ((!)source, null, null); 
+            return new Settings.full ((!)source, null, null);
         return null; //  new Settings (Config.APP_ID);
     }
 
@@ -114,7 +114,10 @@ namespace Music {
         public override void startup () {
             base.startup ();
 
-            //  Must load tag cache after the app register, to make sort works
+            // Sort by album by default
+            sort_mode = SortMode.ALBUM;
+
+            // Must load tag cache after the app register, to make sort works
             _song_store.load_tag_cache ();
 
             _mpris_id = Bus.own_name (BusType.SESSION,
