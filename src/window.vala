@@ -225,7 +225,7 @@ namespace Music {
             var entry = (SongEntry) item.child;
             var song = (Song) item.item;
             entry.playing = item.position == app.current_item;
-            entry.update (song, app.sort_mode);
+            entry.update (song);
             //  print ("bind: %u\n", item.position);
 
             var thumbnailer = app.thumbnailer;
@@ -244,7 +244,7 @@ namespace Music {
                 } else if (paintable2 != null) {
                     // maybe changed, update it
                     entry.cover = paintable2;
-                    entry.update (saved_song, app.sort_mode);
+                    entry.update (saved_song);
                 }
             }
         }

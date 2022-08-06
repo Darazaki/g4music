@@ -64,30 +64,10 @@ namespace Music {
             }
         }
 
-        public void update (Song song, SortMode sort) {
+        public void update (Song song) {
             _song = song;
-            switch (sort) {
-                case SortMode.ALBUM:
-                    _title.label = song.album;
-                    _subtitle.label = (0 < song.track < int.MAX) ? @"$(song.track). $(song.title)" : song.title;
-                    break;
-
-                case SortMode.ARTIST:
-                    _title.label = song.artist;
-                    _subtitle.label = song.title;
-                    break;
-
-                case SortMode.RECENT:
-                    var date = new DateTime.from_unix_local (song.modified_time);
-                    _title.label = song.title;
-                    _subtitle.label = date.format ("%x %H:%M");
-                    break;
-
-                default:
-                    _title.label = song.title;
-                    _subtitle.label = song.artist;
-                    break;
-            }
+            _title.label = song.artist + " - " + song.title;
+            _subtitle.label = song.album;
         }
 
         private void show_popover () {
