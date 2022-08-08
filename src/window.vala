@@ -97,7 +97,7 @@ namespace Music {
             search_bar.key_capture_widget = this.content;
 
             // Disable the Play/Pause shortcut when typing in the search bar
-            // This allows the use on the space key
+            // This allows the use of the space key in the search field
             var focus_changed = new Gtk.EventControllerFocus ();
             focus_changed.enter.connect (() => {
                 app.set_accels_for_action (ACTION_APP + ACTION_PLAY, {});
