@@ -119,8 +119,10 @@ namespace Music {
             // Sort by album by default
             sort_mode = SortMode.ALBUM;
 
-            // Must load tag cache after the app register, to make sort works
-            _song_store.load_tag_cache ();
+            // Must load tag cache after the app register (GLib init), to make sort works
+            _song_store.load_tag_cache_async.begin ((obj, res) => {
+                _song_store.load_tag_cache_async.end (res);
+            });
 
             _mpris_id = Bus.own_name (BusType.SESSION,
                 "org.mpris.MediaPlayer2." + Config.APP_ID,
