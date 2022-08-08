@@ -15,6 +15,8 @@ namespace Music {
     public const string ACTION_TOGGLE_SORT = "toggle-sort";
     public const string ACTION_QUIT = "quit";
 
+    public const string KEY_PLAY = "space";
+
     struct ActionShortKey {
         public weak string name;
         public weak string key;
@@ -77,7 +79,7 @@ namespace Music {
             add_action_entries (sort_entries, this);
 
             ActionShortKey[] action_keys = {
-                { ACTION_PLAY, "<primary>p" },
+                { ACTION_PLAY, KEY_PLAY },
                 { ACTION_PREV, "<primary>Left" },
                 { ACTION_NEXT, "<primary>Right" },
                 { ACTION_SEARCH, "<primary>f" },

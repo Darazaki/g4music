@@ -96,6 +96,17 @@ namespace Music {
             Gtk.StyleContext.add_provider_for_display (this.display, provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
             search_bar.key_capture_widget = this.content;
 
+            // Disable the Play/Pause shortcut when typing in the search bar
+            // This allows the use on the space key
+            var focus_changed = new Gtk.EventControllerFocus ();
+            focus_changed.enter.connect (() => {
+                app.set_accels_for_action (ACTION_APP + ACTION_PLAY, {});
+            });
+            focus_changed.leave.connect (() => {
+                app.set_accels_for_action (ACTION_APP + ACTION_PLAY, { KEY_PLAY });
+            });
+            search_bar.add_controller (focus_changed);
+
             mini_box.append (_mini_bar);
             _mini_bar.activated.connect (() => {
                 leaflet.navigate (Adw.NavigationDirection.FORWARD);
